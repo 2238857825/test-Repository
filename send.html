@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.js"></script> -->
+</head>
+
+<body>
+    <input type="text" id="msg">
+    <input type="button" id="send" value="发送">
+    <ul id="receive"></ul>
+
+    <script type="module">
+        import * as io from './node_modules/socket.io-client/dist/socket.io.esm.min.js'
+        
+        var socket = io.connect('http://localhost:80');
+
+        //连接成功时触发
+        socket.on('connect', function () {
+            console.log('连接成功');
+        });
+
+        //连接断开时触发
+        socket.on('disconnect', function () {
+            console.log('连接断开');
+        });
+
+        //收到消息时触发
+        socket.on('msg', function (data) {
+            var node = document.createElement("li");
+            node.innerHTML = "客户端收到 : " + data;
+            document.querySelector("#receive").appendChild(node);
+        });
+        
+        document.querySelector("#send").onclick = function () {
+            var msg = document.querySelector("#msg").value;
+            socket.emit('login', msg);
+        };
+        // 发送消息
+
+    </script>
+</body>
+
+</html>

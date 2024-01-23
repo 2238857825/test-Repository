@@ -1,0 +1,61 @@
+const sequelize=require('./config')
+const {DataTypes}=require('sequelize')
+
+const cart=sequelize.define('pay',{
+    id:{
+        type:DataTypes.INTEGER,
+        primaryKey:true,
+        autoIncrement:true
+    },
+    order_id:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    email:{
+        type:DataTypes.STRING,
+        allowNull:false,
+    },
+    price:{
+        type:DataTypes.FLOAT,
+        allowNull:false
+    },
+    rod_id:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    },
+    product_id:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    },
+    number:{
+        type:DataTypes.INTEGER,
+        allowNull:false
+    },
+    address:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    iphone:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    date:{
+        type:DataTypes.DATE,
+        allowNull:false,
+        default:DataTypes.NOW
+    },
+    name:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    issend:{
+        type:DataTypes.INET,
+        allowNull:false,
+        defaultValue:0
+    }
+},{
+    timestamps:false,
+    tableName:'pay'
+})
+
+module.exports=cart
