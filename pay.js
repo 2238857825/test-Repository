@@ -13,7 +13,7 @@ router.post('/pay', (req, res) => {
     if (req.auth) {
         // 根据req.body.order_id修改paystatus表中的ispay
         try {
-            // 使用事务
+            // 使用事务进行回滚
             try {
                 sequelize.transaction(async t => {
                     await payStatus.update({
@@ -72,7 +72,6 @@ router.post('/pay', (req, res) => {
 
 
 
-        // 根据req.body.id查询products表
 
 
 
