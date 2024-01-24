@@ -4,8 +4,6 @@ const paystatus=require('./database/paystatus')
 router.post('/payStatus',(req,res)=>{
     console.log(req.body);
 // 生成一个订单号
-
-// 必要的
     const order_id=new Date().getTime()+parseInt(Math.random()*10000)
     paystatus.create({
         email:req.auth.email,
